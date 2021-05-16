@@ -7,7 +7,7 @@
             <h1>Hours Log</h1>
           </b-col>
           <b-col>
-            <b-btn variant="primary">
+            <b-btn variant="primary" @click="$router.push({name: 'TimeEntry'})">
               + Add Entry
             </b-btn>
           </b-col>
@@ -30,6 +30,7 @@ export default {
   components: {
 
   },
+  // eslint-disable-next-line no-restricted-syntax
   data () {
     return {
       items: [
