@@ -12,9 +12,15 @@
             </b-btn>
           </b-col>
         </b-row>
+
         <b-row>
           <b-col>
-            <b-table striped hover :items="items" />
+            <b-table
+              striped
+              hover
+              :fields="fields"
+              :items="entries"
+            />
           </b-col>
         </b-row>
       </b-col>
@@ -23,20 +29,38 @@
 </template>
 
 <script>
-
+import { mapActions, mapState } from 'vuex';
+import moment from 'moment';
 
 export default {
   name: 'HoursLog',
   components: {
-
   },
   // eslint-disable-next-line no-restricted-syntax
   data () {
     return {
-      items: [
-        { project_name: 'company #1', date: 'May 12,2020', start_time: '7:00 am', end_time:'11:00 am' }
-      ]
+      fields: ['project label', 'startDate', 'endDate']
     };
+  },
+  methods: {
+    ...mapActions(['readTimeEntries'])
+  },
+  computed: {
+    ...mapState(['timeEntries']),
+    // eslint-disable-next-line no-restricted-syntax
+    entries () {
+      return this.timeEntries.map((entry) => {
+        return {
+          ...entry,
+          endDate: moment(entry.endDate).format('MMMM Do YYYY, h:mm a'),
+          startDate: moment(entry.startDate).format('MMMM Do YYYY, h:mm a')
+        };
+      });
+    }
+  },
+  // eslint-disable-next-line no-restricted-syntax
+  mounted () {
+    this.readTimeEntries();
   }
 };
 </script>
