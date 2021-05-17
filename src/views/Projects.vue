@@ -1,7 +1,7 @@
 <template>
   <b-container class="hours-log-page">
     <b-row>
-      <b-col>
+      <b-col sm="8" offsetSm="2">
         <b-row class="mt-5 mb-4">
           <b-col>
             <h1>Projects</h1>
@@ -12,22 +12,34 @@
             </b-btn>
           </b-col>
         </b-row>
+
         <b-row>
           <b-col>
-            <v-select :options="[{label: 'Canada', code: 'ca'}]" />
+            <v-select
+              :options="getProjects"
+            />
           </b-col>
         </b-row>
       </b-col>
     </b-row>
   </b-container>
 </template>
-<script>
 
+<script>
+import { mapActions, mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'Projects',
-  components: {
-
+  methods: {
+    ...mapActions(['readProjects'])
+  },
+  computed: {
+    ...mapState(['projects']),
+    ...mapGetters(['getProjects'])
+  },
+  // eslint-disable-next-line no-restricted-syntax
+  mounted () {
+    this.readProjects();
   }
 };
 </script>

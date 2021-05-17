@@ -34,8 +34,9 @@
     </b-row>
   </b-container>
 </template>
-<script>
 
+<script>
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'TimeEntry',
@@ -49,15 +50,23 @@ export default {
       }
     };
   },
-  methods:{
+  methods: {
+    ...mapActions(['createTimeEntry', 'readProjects']),
     // eslint-disable-next-line no-restricted-syntax
-    onSubmit () {
-
+    onSubmit (e) {
+      e.preventDefault();
+      this.createTimeEntry(this.formData);
     },
     // eslint-disable-next-line no-restricted-syntax
     onReset () {
     }
+  },
+  computed: {
+    ...mapGetters(['getProjects'])
+  },
+  // eslint-disable-next-line no-restricted-syntax
+  mounted () {
+    this.readProjects();
   }
-
 };
 </script>

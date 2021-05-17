@@ -31,7 +31,6 @@
               </b-form-group>
 
               <b-form-group id="input-group-2" label="Color:" labelFor="input-2">
-
                 <input v-model="formData.color" type="color" />
               </b-form-group>
 
@@ -46,7 +45,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex';
 
 export default {
   name: 'ProjectEntry',
@@ -61,10 +60,11 @@ export default {
     };
   },
   methods: {
-
+    ...mapActions(['createProject']),
     // eslint-disable-next-line no-restricted-syntax
-    onSubmit () {
-
+    onSubmit (e) {
+      e.preventDefault();
+      this.createProject(this.formData);
     },
     // eslint-disable-next-line no-restricted-syntax
     onReset () {

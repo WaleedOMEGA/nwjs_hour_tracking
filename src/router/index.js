@@ -4,6 +4,8 @@ import HoursLog from '../views/HoursLog.vue';
 import Projects from '../views/Projects.vue';
 import TimeEntry from '../views/TimeEntry.vue';
 import ProjectEntry from '../views/ProjectEntry.vue';
+import Settings from '../views/Settings.vue';
+import SettingsEdit from '../views/SettingsEdit.vue';
 
 Vue.use(VueRouter);
 
@@ -19,14 +21,24 @@ const routes = [
     component: TimeEntry
   },
   {
+    path: '/projects',
+    name: 'Projects',
+    component: Projects
+  },
+  {
     path: '/add-project',
     name: 'ProjectEntry',
     component: ProjectEntry
   },
   {
-    path: '/projects',
-    name: 'Projects',
-    component: Projects
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
+  },
+  {
+    path: '/settings/edit',
+    name: 'SettingsEdit',
+    component: SettingsEdit
   }
 ];
 

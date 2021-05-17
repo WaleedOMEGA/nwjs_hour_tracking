@@ -39,7 +39,7 @@ export default {
   // eslint-disable-next-line no-restricted-syntax
   data () {
     return {
-      fields: ['project label', 'startDate', 'endDate']
+      fields: ['project.label', 'startDate', 'endDate']
     };
   },
   methods: {
